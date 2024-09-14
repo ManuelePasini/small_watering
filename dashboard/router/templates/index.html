@@ -181,30 +181,23 @@
                 <h2 class="text-center fw-bold">Gestione irrigazione (<span id="pumpMode">Manuale</span>) <i class="fa-solid fa-circle blinking-element ps-4" id="blinkingCircle"></i> </h2>
                 <canvas id="irrigationLineChart" height="400" style="max-height: 410px; display: initial;"></canvas>
 
-                <div class="d-flex flex-line justify-content-around">
-                    <h6 class="text-center fw-bold">Parametri irrigazione</h6>
-                    <p class="mx-5 text-start h4 p-2">Umidità attuale: <span id="observedMoisture" class="h3 fw-bold px-2">0%</span></p>
-
-                    <p class="mx-5 text-start h4 p-2">Umidità ottima: <span id="optimalMoisture" class="h3 fw-bold px-2">0%</span> 
-
-                    <p class="mx-5 text-start h4 p-2">Errore sul periodo: <span id="rmse" class="h3 fw-bold px-2">1</span>
+                <div class="d-flex flex-line justify-content-around align-items-center mt-3">
+                    <p class="mx-4 h4 p-2">Umidità ottimale: <span id="optimalMoisture" class="h3 fw-bold px-2">0%</span></p>
+                    <p class="mx-4 h4 p-2">Umidità attuale: <span id="observedMoisture" class="h3 fw-bold px-2">0%</span></p>
+                    <p class="mx-4 h4 p-2">Errore sul periodo: <span id="rmse" class="h3 fw-bold px-2">1</span></p>
+                    <button class="btn btn-primary h4 mx-4 px-2" id="togglePump"><span id="pumpText" class="h4 px-2">Attiva pompa</span></button>
                 </div>
             </div>
 
             <div class="col-4">
                 <h2 class="text-center fw-bold">Regola di irrigazione</h2>
-                <div class="col content-center w-100 h-100" id="irrigationControlContainer"> 
+                <div class="col content-center" style="height: 85%"  id="irrigationControlContainer"> 
                 </div>
-                <button class="btn btn-primary" id="chooseOptimal" disabled="">Scegli regola</button>
-            </div>
-        </div>
 
-        <div class="row w-100 m-0 p-0" style="height: 10%">
-            <div class="col-2" style="align-content: center;">
-                <button class="btn btn-primary" id="toggleMode">Cambia modalità</button>
-            </div>
-            <div class="col-2" style="align-content: center;">
-                <button class="btn btn-primary" id="togglePump">Attiva/disattiva pompa</button>
+                <div class="row justify-content-center">
+                    <button class="btn btn-primary col-4 mx-3" id="toggleMode"><span class="h4 px-2">Cambia modalità</span></button>
+                    <button class="btn btn-primary col-4 mx-3" id="chooseOptimal" disabled=""><span class="h4 px-2">Scegli regola</span></button>
+                </div>
             </div>
         </div>
     </div>
