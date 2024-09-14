@@ -183,18 +183,19 @@
                 
                 <div class="d-flex flex-line justify-content-around">
                     <h6 class="text-center fw-bold">Parametri irrigazione</h6>
-                    <p class="m-0 ms-2 text-start">Umidità attuale: <span id="observedMoisture">0%</span></p>
+                    <p class="mx-5 text-start h4 p-2">Umidità attuale: <span id="observedMoisture" class="h3 fw-bold px-2">0%</span></p>
 
-                    <p class="m-0 ms-2 text-start">Umidità ottima: <span id="optimalMoisture">0%</span> 
+                    <p class="mx-5 text-start h4 p-2">Umidità ottima: <span id="optimalMoisture" class="h3 fw-bold px-2">0%</span> 
 
-                    <p class="m0 ms-2 text-start">Errore sul periodo: <span id="rmse">1</span>
+                    <p class="mx-5 text-start h4 p-2">Errore sul periodo: <span id="rmse" class="h3 fw-bold px-2">1</span>
                 </div>
             </div>
 
             <div class="col-4">
                 <h2 class="text-center fw-bold">Regola di irrigazione</h2>
-                <div class="col content-center w-100 h-100" id="irrigationControlContainer">
+                <div class="col content-center w-100 h-100" id="irrigationControlContainer"> 
                 </div>
+                <button class="btn btn-primary" id="chooseOptimal" disabled="">Scegli regola</button>
             </div>
         </div>
 
@@ -209,10 +210,6 @@
             </div>
             <div class="col-2" style="align-content: center;">
                 <button class="btn btn-primary" id="togglePump">Attiva/disattiva pompa</button>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-4" style="align-content: center;">
-                <button class="btn btn-primary" id="chooseOptimal" disabled="">Scegli regola</button>
             </div>
         </div>
     </div>
