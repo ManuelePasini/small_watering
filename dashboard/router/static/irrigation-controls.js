@@ -6,14 +6,7 @@ function upsertIrrigationControls(optimal) {
     console.log("upsertIrrigation")
     console.log(optimal)
     currentOptimal = optimal;
-    if (optimal.id == get_optimal_from_name("disabled").id) {
-        $('#irrigationControlContainer').empty().append(
-            `<div class="w-100 h-100 align-content-center">
-                <p class="text-center fw-bold">Disponibile solo in modalità automatica</p>
-            </div>
-            `);
-        return;
-    } else if (optimal.id == get_optimal_from_name("Slider").id) {
+    if (optimal.id == get_optimal_from_name("Slider").id) {
         setupOptimalSlider()
     } else {
         setupOptimalMatrixChart(optimal.value);
