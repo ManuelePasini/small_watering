@@ -4,7 +4,7 @@ let timestampDelta = (Date.now()/1000) - parseInt(window.config.timestamp, 10);
 let lastSliderValue = 0;
 Chart.defaults.font.size = 16;
 
-$(document).ready(function () {
+$(document).ready(async function () {
     $('#persistency').prop('checked', window.config.uploadStatus == "True");
 
     $('#persistency').on('change', function () {
@@ -56,7 +56,7 @@ $(document).ready(function () {
 
     let pumpMode = PumpMode.Manual;
     
-    fetch('/irrigation/optimal/', { method: 'GET' })
+    await fetch('/irrigation/optimal/', { method: 'GET' })
     .then(response => response.json())
     .then(data => {
         let row;
@@ -121,8 +121,9 @@ $(document).ready(function () {
     });
 
     //optimals.push(new Optimals(get_optimal_from_name("Slider"), 'disabled', 'Disabled', null, null));
-    let selectedOptimal = get_optimal_from_name("Slider");
     fetch('/irrigation/mode?mode=manual', { method: 'POST' })
+    let selectedOptimal = get_optimal_from_name("Slider");
+    console.log(selectedOptimal)
     upsertIrrigationControls(selectedOptimal);
 
     async function fetchData() {

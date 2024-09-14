@@ -3,6 +3,8 @@ let currentOptimal;
 
 
 function upsertIrrigationControls(optimal) {
+    console.log("upsertIrrigation")
+    console.log(optimal)
     currentOptimal = optimal;
     if (optimal.id == get_optimal_from_name("disabled").id) {
         $('#irrigationControlContainer').empty().append(
