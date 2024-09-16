@@ -116,7 +116,7 @@ $(document).ready(function () {
     $('#togglePump').click(function () {
         fetch('/pump/', { method: 'POST' }).then(response => response.json()).then(data => {
             $('#pumpStatus').text(data.pump_state);
-
+            console.log(data.pump_state)
             if (data.pump_state === true) {
                 $('#togglePump').prop('disabled', true);
     
