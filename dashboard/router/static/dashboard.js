@@ -184,10 +184,10 @@ $(document).ready(async function () {
             $('#pumpStatus').text(data.pump_state);
             if (data === "On") {
                 $('#togglePump').prop('disabled', true);
-                $('#togglePump').prop('text', "Disattiva pompa");    
+                $('#togglePump').textContent = "Disattiva pompa";    
                 setTimeout(function() {
                     $('#togglePump').prop('disabled', false);
-                    $('#togglePump').prop('text', "Attiva pompa");  
+                    $('#togglePump').textContent = "Attiva pompa";  
                 }, 10000);
             }
         });
