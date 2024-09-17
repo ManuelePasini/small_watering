@@ -178,6 +178,7 @@ $(document).ready(function () {
             actualId = target.id.replace('Card', '');
             selectedOptimal = optimals.find(optimal => optimal.id == actualId);
             if (pumpMode == PumpMode.Auto){
+
                 if (target.id.startsWith('slider')) {
                     fetch('/irrigation/mode?mode=slider', { method: 'POST' })
                     fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
@@ -185,9 +186,8 @@ $(document).ready(function () {
                     fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
                     updateControlMatrixValues(selectedOptimal.value.data, true);
                 }
-            }else{
+            } else {
                 if (!target.id.startsWith('slider')) {
-                    fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
                     updateControlMatrixValues(selectedOptimal.value.data, true);
                 }
             }
