@@ -55,6 +55,7 @@ $(document).ready(function () {
     }
 
     let pumpMode = PumpMode.Manual;
+    optimals.push(new Optimals('disabled', 'disabled', 'Disabled', null, null));
     fetch('/irrigation/optimal/', { method: 'GET' })
     .then(response => response.json())
     .then(data => {
