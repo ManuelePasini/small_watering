@@ -184,9 +184,10 @@ $(document).ready(async function () {
             $('#pumpStatus').text(data.pump_state);
             if (data === "On") {
                 $('#togglePump').prop('disabled', true);
-    
+                $('#togglePump').prop('text', "Disattiva pompa");    
                 setTimeout(function() {
                     $('#togglePump').prop('disabled', false);
+                    $('#togglePump').prop('text', "Attiva pompa");  
                 }, 10000);
             }
         });
@@ -202,11 +203,12 @@ $(document).ready(async function () {
             //upsertIrrigationControls(selectedOptimal);
             if(selectedOptimal.name == 'Slider'){
                 fetch('/irrigation/mode?mode=slider', { method: 'POST' })
+                fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
             }else{
                 fetch('/irrigation/mode?mode=matrix', { method: 'POST' })
             }
             
-            fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+            
         } else if (pumpMode == PumpMode.Auto) {
             pumpMode = PumpMode.Manual;
             $('#togglePump').prop('disabled', false);
