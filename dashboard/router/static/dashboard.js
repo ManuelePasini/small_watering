@@ -55,7 +55,7 @@ $(document).ready(function () {
     }
 
     let pumpMode = PumpMode.Manual;
-    optimals.push(new Optimals('disabled', 'disabled', 'Disabled', null, null));
+    optimals.push(new Optimals('slider', 'disabled', 'Disabled', null, null));
     let selectedOptimal = optimals[0];
     fetch('/irrigation/mode?mode=manual', { method: 'POST' })
     upsertIrrigationControls(selectedOptimal);
