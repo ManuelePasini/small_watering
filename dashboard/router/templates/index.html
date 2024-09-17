@@ -176,32 +176,23 @@
 
             </div>
         </div>
-
-        <div class="row w-100 m-0 p-0 pt-1" style="height: 10%">
-            <div class="col-3 content-center offset-3">
-                <h2 class="text-center fw-bold">Gestione irrigazione</h2>
-            </div>
-            <div class="col-2 content-center">
-                <h2 class="text-center fw-bold">Parametri irrigazione</h2>
-            </div>
-            <div class="col-4">
-                <h2 class="text-center fw-bold">Regola di irrigazione</h2>
-            </div>
-        </div>
         <div class="row w-100 m-0 p-0" style="height: 30%">
             <div class="col-8 content-center">
+                <h2 class="text-center fw-bold">Gestione irrigazione</h2>
                 <canvas id="irrigationLineChart" height="400" style="max-height: 410px; display: initial;"></canvas>
+                
+                <div class="d-flex flex-line justify-content-around">
+                    <h6 class="text-center fw-bold">Parametri irrigazione</h6>
+                    <p class="m-0 ms-2 text-start">Umidità attuale: <span id="observedMoisture">0%</span></p>
+
+                    <p class="m-0 ms-2 text-start">Umidità ottima: <span id="optimalMoisture">0%</span> 
+
+                    <p class="m0 ms-2 text-start">Errore sul periodo: <span id="rmse">1</span>
+                </div>
             </div>
-            <div class="col-6" style="align-content: center;">
 
-                <p class="m-0 ms-2 text-start">Umidità attuale: <span id="observedMoisture">0%</span></p>
-
-                <p class="m-0 ms-2 text-start">Umidità ottima: <span id="optimalMoisture">0%</span> 
-
-                <p class="m0 ms-2 text-start">Errore sul periodo: <span id="rmse">1</span>
-
-            </div>
             <div class="col-4">
+                <h2 class="text-center fw-bold">Regola di irrigazione</h2>
                 <div class="col content-center w-100 h-100" id="irrigationControlContainer">
                 </div>
             </div>
