@@ -55,6 +55,71 @@ $(document).ready(function () {
     }
 
     let pumpMode = PumpMode.Manual;
+    
+    fetch('/irrigation/optimal/', { method: 'GET' })
+    .then(response => response.json())
+    .then(data => {
+        let row;
+        let count = 0;
+
+        for (const [key, value] of Object.entries(data)) {
+            optimals.push(new Optimals(key, value.title, value.description, '/irrigation/optimal/image/' + key, value.value));
+
+            if (count % 3 === 0) {
+                row = $('<div class="row my-3"></div>');
+                $('#optimalsContainer').append(row);
+            }
+
+            row.append(`
+            <div class="col rounded" id="${key}Container">
+                ${optimals[optimals.length - 1].toHtml()}
+            </div>
+        `);
+            count++;
+        }
+
+        $('.card').click(function (e) {
+            target = e.currentTarget;
+            actualId = target.id.replace('Card', '');
+            selectedOptimal = optimals.find(optimal => optimal.id == actualId);
+            if (pumpMode == PumpMode.Auto){
+
+                if (target.id.startsWith('slider')) {
+                    fetch('/irrigation/mode?mode=slider', { method: 'POST' })
+                    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+                } else {
+                    fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
+                    updateControlMatrixValues(selectedOptimal.value.data, true);
+                }
+            } else {
+                if (!target.id.startsWith('slider')) {
+                    updateControlMatrixValues(selectedOptimal.value.data, true);
+                }
+            }
+
+            optimals.forEach(o => $('#' + o.name + 'Card').removeClass('border-primary').removeClass('border-secondary'));
+            $('#' + selectedOptimal.name + 'Card').addClass('border-primary');
+
+            upsertIrrigationControls(selectedOptimal);
+
+            $('#optimalSelectionModal').modal('hide');
+        })
+
+        $('.card').hover(function (e) {
+            target = $("#" + e.currentTarget.id);
+            if (!target.hasClass('border-primary')) {
+                target.addClass('border-secondary');
+            }
+        })
+
+        $('.card').on('mouseleave', function (e) {
+            target = $("#" + e.currentTarget.id);
+            if (target.hasClass('border-secondary')) {
+                target.removeClass('border-secondary');
+            }
+        })
+    });
+    
     optimals.push(new Optimals(get_optimal_from_name("Slider"), 'disabled', 'Disabled', null, null));
     let selectedOptimal = optimals[0];
     fetch('/irrigation/mode?mode=manual', { method: 'POST' })
@@ -149,70 +214,6 @@ $(document).ready(function () {
 
     $('#chooseOptimal').click(function () {
         $('#optimalSelectionModal').modal('show');
-    });
-
-    fetch('/irrigation/optimal/', { method: 'GET' })
-    .then(response => response.json())
-    .then(data => {
-        let row;
-        let count = 0;
-
-        for (const [key, value] of Object.entries(data)) {
-            optimals.push(new Optimals(key, value.title, value.description, '/irrigation/optimal/image/' + key, value.value));
-
-            if (count % 3 === 0) {
-                row = $('<div class="row my-3"></div>');
-                $('#optimalsContainer').append(row);
-            }
-
-            row.append(`
-            <div class="col rounded" id="${key}Container">
-                ${optimals[optimals.length - 1].toHtml()}
-            </div>
-        `);
-            count++;
-        }
-
-        $('.card').click(function (e) {
-            target = e.currentTarget;
-            actualId = target.id.replace('Card', '');
-            selectedOptimal = optimals.find(optimal => optimal.id == actualId);
-            if (pumpMode == PumpMode.Auto){
-
-                if (target.id.startsWith('slider')) {
-                    fetch('/irrigation/mode?mode=slider', { method: 'POST' })
-                    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
-                } else {
-                    fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
-                    updateControlMatrixValues(selectedOptimal.value.data, true);
-                }
-            } else {
-                if (!target.id.startsWith('slider')) {
-                    updateControlMatrixValues(selectedOptimal.value.data, true);
-                }
-            }
-
-            optimals.forEach(o => $('#' + o.name + 'Card').removeClass('border-primary').removeClass('border-secondary'));
-            $('#' + selectedOptimal.name + 'Card').addClass('border-primary');
-
-            upsertIrrigationControls(selectedOptimal);
-
-            $('#optimalSelectionModal').modal('hide');
-        })
-
-        $('.card').hover(function (e) {
-            target = $("#" + e.currentTarget.id);
-            if (!target.hasClass('border-primary')) {
-                target.addClass('border-secondary');
-            }
-        })
-
-        $('.card').on('mouseleave', function (e) {
-            target = $("#" + e.currentTarget.id);
-            if (target.hasClass('border-secondary')) {
-                target.removeClass('border-secondary');
-            }
-        })
     });
     
     fetchData();
