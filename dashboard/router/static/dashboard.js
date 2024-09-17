@@ -207,8 +207,6 @@ $(document).ready(async function () {
             }else{
                 fetch('/irrigation/mode?mode=matrix', { method: 'POST' })
             }
-            
-            
         } else if (pumpMode == PumpMode.Auto) {
             pumpMode = PumpMode.Manual;
             $('#togglePump').prop('disabled', false);
