@@ -119,9 +119,9 @@ $(document).ready(function () {
             }
         })
     });
-    
-    optimals.push(new Optimals(get_optimal_from_name("Slider"), 'disabled', 'Disabled', null, null));
-    let selectedOptimal = optimals[0];
+
+    //optimals.push(new Optimals(get_optimal_from_name("Slider"), 'disabled', 'Disabled', null, null));
+    let selectedOptimal = get_optimal_from_name("Slider");
     fetch('/irrigation/mode?mode=manual', { method: 'POST' })
     upsertIrrigationControls(selectedOptimal);
 
