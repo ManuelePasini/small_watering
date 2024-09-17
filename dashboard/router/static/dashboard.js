@@ -198,17 +198,22 @@ $(document).ready(async function () {
             $('#togglePump').prop('disabled', true);
             $('#chooseOptimal').prop('disabled', false);
             $('#pumpMode').text('Automatico');
-            selectedOptimal = get_optimal_from_name("Slider");
-            upsertIrrigationControls(selectedOptimal);
-            fetch('/irrigation/mode?mode=slider', { method: 'POST' })
+            //selectedOptimal = get_optimal_from_name("Slider");
+            //upsertIrrigationControls(selectedOptimal);
+            if(selectedOptimal.name == 'Slider'){
+                fetch('/irrigation/mode?mode=slider', { method: 'POST' })
+            }else{
+                fetch('/irrigation/mode?mode=matrix', { method: 'POST' })
+            }
+            
             fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
         } else if (pumpMode == PumpMode.Auto) {
             pumpMode = PumpMode.Manual;
             $('#togglePump').prop('disabled', false);
             $('#chooseOptimal').prop('disabled', false);
             $('#pumpMode').text('Manuale');
-            selectedOptimal = get_optimal_from_name("Slider");
-            upsertIrrigationControls(selectedOptimal);
+            //selectedOptimal = get_optimal_from_name("Slider");
+            //upsertIrrigationControls(selectedOptimal);
             fetch('/irrigation/mode?mode=manual', { method: 'POST' })
         }
     });
