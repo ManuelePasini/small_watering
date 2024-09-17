@@ -139,9 +139,9 @@ $(document).ready(function () {
         } else if (pumpMode == PumpMode.Auto) {
             pumpMode = PumpMode.Manual;
             $('#togglePump').prop('disabled', false);
-            $('#chooseOptimal').prop('disabled', true);
+            $('#chooseOptimal').prop('disabled', false);
             $('#pumpMode').text('Manuale');
-            selectedOptimal = get_optimal_from_name("disabled");
+            selectedOptimal = get_optimal_from_name("Slider");
             upsertIrrigationControls(selectedOptimal);
             fetch('/irrigation/mode?mode=manual', { method: 'POST' })
         }
