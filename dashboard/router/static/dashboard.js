@@ -177,12 +177,19 @@ $(document).ready(function () {
             target = e.currentTarget;
             actualId = target.id.replace('Card', '');
             selectedOptimal = optimals.find(optimal => optimal.id == actualId);
-            if (target.id.startsWith('slider') && pumpMode == PumpMode.Auto) {
-                fetch('/irrigation/mode?mode=slider', { method: 'POST' })
-                fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
-            } else if(target.id.startsWith('matrix') && pumpMode == PumpMode.Auto) {
-                fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
-                updateControlMatrixValues(selectedOptimal.value.data, true);
+            if (pumpMode == PumpMode.Auto){
+                if (target.id.startsWith('slider')) {
+                    fetch('/irrigation/mode?mode=slider', { method: 'POST' })
+                    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+                } else {
+                    fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
+                    updateControlMatrixValues(selectedOptimal.value.data, true);
+                }
+            }else{
+                if (!target.id.startsWith('slider')) {
+                    fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
+                    updateControlMatrixValues(selectedOptimal.value.data, true);
+                }
             }
 
             optimals.forEach(o => $('#' + o.name + 'Card').removeClass('border-primary').removeClass('border-secondary'));
