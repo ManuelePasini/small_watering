@@ -189,16 +189,17 @@
                 </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-4 d-flex flex-column justify-content-between">
                 <h2 class="text-center fw-bold">Regola di irrigazione</h2>
-                <div class="col content-center" style="height: 85%"  id="irrigationControlContainer"> 
+                <div class="content-center flex-grow-1 d-flex align-items-center justify-content-center" id="irrigationControlContainer">
+                <p class="text-center fw-bold">Disponibile solo in modalità automatica</p>
                 </div>
-
-                <div class="row justify-content-center">
-                    <button class="btn btn-primary col-4 mx-3" id="toggleMode"><span class="h4 px-2">Cambia modalità</span></button>
-                    <button class="btn btn-primary col-4 mx-3" id="chooseOptimal" disabled=""><span class="h4 px-2">Scegli regola</span></button>
+                <div class="justify-content-center">
+                <button class="btn btn-primary col-4 m-3" id="toggleMode"><span class="h4 px-2">Cambia modalità</span></button>
+                <button class="btn btn-primary col-4 m-3" id="chooseOptimal" disabled=""><span class="h4 px-2">Scegli regola</span></button>
                 </div>
-            </div>
+                
+                </div>
         </div>
     </div>
 </body>
