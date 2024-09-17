@@ -178,9 +178,9 @@
         </div>
         <div class="row w-100 m-0 p-0" style="height: 30%">
             <div class="col-8 content-center">
-                <h2 class="text-center fw-bold">Gestione irrigazione</h2>
+                <h2 class="text-center fw-bold">Gestione irrigazione (<span id="pumpMode">Manuale</span></p> - <span id="pumpStatus">Off</span>) </h2>
                 <canvas id="irrigationLineChart" height="400" style="max-height: 410px; display: initial;"></canvas>
-                
+
                 <div class="d-flex flex-line justify-content-around">
                     <h6 class="text-center fw-bold">Parametri irrigazione</h6>
                     <p class="mx-5 text-start h4 p-2">Umidità attuale: <span id="observedMoisture" class="h3 fw-bold px-2">0%</span></p>
@@ -201,8 +201,8 @@
 
         <div class="row w-100 m-0 p-0" style="height: 10%">
             <div class="col-2" style="align-content: center;">
-                <p class="m-0 ms-2 text-start">Modalità pompa: <span id="pumpMode">Manuale</span></p>
-                <p class="m-0 ms-2 text-start">Stato della pompa: <span id="pumpStatus">Off</span> <i
+                <p class="m-0 ms-2 text-start">Modalità pompa: 
+                <p class="m-0 ms-2 text-start">Stato della pompa:  <i
                         class="fa-solid fa-circle blinking-element" id="blinkingCircle"></i></p>
             </div>
             <div class="col-2" style="align-content: center;">
