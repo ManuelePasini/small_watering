@@ -192,7 +192,7 @@ $(document).ready(async function () {
                     $('#pumpText').text("Disattiva pompa");    
                     setTimeout(function() {
                         $('#togglePump').prop('disabled', false);
-                        $('#togglePump').css('background-color', 'blue');  
+                        $('#togglePump').css('background-color', '#0D6EFD');  
                     }, 10000);
             }
         });
