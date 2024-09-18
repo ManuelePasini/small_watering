@@ -233,9 +233,9 @@ $(document).ready(async function () {
     fetchData();
     fetchInterpolatedData();
     fetchAllIrrigationData();
-    console.log("OPTIMAL VALUE")
-    console.log(getLastOptimalMoistureValue())
-    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+    //console.log("OPTIMAL VALUE")
+    //console.log(getLastOptimalMoistureValue())
+    //fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
     upsertIrrigationControls(selectedOptimal);
     setInterval(fetchInterpolatedData, 500);
     setInterval(fetchPumpState, 1000);
