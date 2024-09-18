@@ -92,9 +92,8 @@ $(document).ready(async function () {
                     updateControlMatrixValues(selectedOptimal.value.data, true);
                 }
             } else {
-                if (!target.id.startsWith('slider')) {
-                    updateControlMatrixValues(selectedOptimal.value.data, true);
-                    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+                if (target.id.startsWith('slider')) {
+                    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' }); 
                 }else{
                     updateControlMatrixValues(selectedOptimal.value.data, true);
                 }
