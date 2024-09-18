@@ -193,7 +193,7 @@ $(document).ready(async function () {
                     setTimeout(function() {
                         $('#togglePump').prop('disabled', false);
                         $('#togglePump').css('background-color', '#0D6EFD');  
-                    }, 10000);
+                    }, 2);
             }
         });
     });
