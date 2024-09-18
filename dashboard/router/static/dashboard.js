@@ -125,6 +125,8 @@ $(document).ready(async function () {
     //optimals.push(new Optimals(get_optimal_from_name("Slider"), 'disabled', 'Disabled', null, null));
     fetch('/irrigation/mode?mode=manual-slider', { method: 'POST' })
     let selectedOptimal = get_optimal_from_name("Slider");
+    console.log("LAST VALUE")
+    console.log(getLastOptimalMoistureValue())
     fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
     upsertIrrigationControls(selectedOptimal);
 
