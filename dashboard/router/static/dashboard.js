@@ -217,6 +217,9 @@ $(document).ready(async function () {
             //selectedOptimal = get_optimal_from_name("Slider");
             //upsertIrrigationControls(selectedOptimal);
             fetch('/irrigation/mode?mode=manual', { method: 'POST' })
+            if(selectedOptimal.name == 'Slider'){
+                fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+            }
         }
     });
 
