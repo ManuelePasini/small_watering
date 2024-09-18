@@ -122,7 +122,7 @@ class IrrigationManager:
                 irrigation_data = {
                     "timestamp": datetime.now().timestamp(),
                     "r": r,
-                    "irrigation": 0,
+                    "irrigation": None,
                     "optimal_m": optimal_moisture,
                     "current_m": current_moisture
                 }
