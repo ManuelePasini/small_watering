@@ -37,7 +37,7 @@ function updateSliderValue(value) {
     lastSliderValue = value;
     var deNormValue = (value / 100) * (maxMoisture - minMoisture) + minMoisture;
     fetch('/irrigation/slider?value=' + deNormValue, { method: 'POST' });
-    updateOptimalIrrigationLine(value);
+    //updateOptimalIrrigationLine(value);
 }
 
 function updateControlMatrixValues(matrix, shouldUpdateChart = true) {
