@@ -10,7 +10,8 @@ from hardware.hardware import PumpState
 load_dotenv()
 
 class IrrigationMode:
-    Manual = 'manual'
+    ManualSlider = 'manual-slider'
+    ManualMatrix = 'manual-matrix'
     Slider = 'slider'
     Matrix = 'matrix'
 
@@ -23,7 +24,7 @@ class IrrigationMode:
 class IrrigationManager:
 
     def __init__(self, hardware):
-        self.mode = IrrigationMode.Manual
+        self.mode = IrrigationMode.ManualSlider
         self.pump = hardware
         self.optimal_value = None
         self.__maxIrrigationValue = int(os.getenv("IRRIGATION_CHECK_PERIOD", 10))
@@ -61,8 +62,11 @@ class IrrigationManager:
         return self.pump.get_pump_state()
 
     def set_irrigation_mode(self, mode):
-        if (mode == IrrigationMode.Manual):
-            self.mode = IrrigationMode.Manual
+        if (mode == IrrigationMode.ManualSlider):
+            self.mode = IrrigationMode.ManualSlider
+            self.pump.close_pump()
+        elif (mode == IrrigationMode.ManualMatrix):
+            self.mode = IrrigationMode.ManualMatrix
             self.pump.close_pump()
         elif (mode == IrrigationMode.Slider):
             self.mode = IrrigationMode.Slider
@@ -95,11 +99,13 @@ class IrrigationManager:
             current_moisture = self.__compute_average(last_sensor_data['data'])
             mode = self.mode
             print(f"mode: {mode}")
-            if (mode == IrrigationMode.Slider and self.optimal_value != None):
+
+            if ((mode == IrrigationMode.Slider or mode == IrrigationMode.ManualSlider) and self.optimal_value != None):
                 print("Hey we're in slider mode!")
                 r = self.optimal_value - current_moisture
                 optimal_moisture = self.optimal_value
-            elif (mode == IrrigationMode.Matrix and self.optimal_matrix != None):
+
+            elif (mode == IrrigationMode.Matrix or mode == IrrigationMode.ManualMatrix and self.optimal_matrix != None):
                 print("Heey we're in matrix mode")
                 diffs = []
                 for measurement in last_sensor_data["data"]:
@@ -110,17 +116,17 @@ class IrrigationManager:
                     diffs.append(optimal["v"] - measurement["v"])
                 r = sum(diffs) / len(diffs)
                 optimal_moisture = self.__compute_average(self.optimal_matrix['value'])
-            elif (mode == IrrigationMode.Manual):
-                print("Fuck we're manual")
+
+
+            if "manual" in mode:
                 irrigation_data = {
                     "timestamp": datetime.now().timestamp(),
-                    "r": 0,
+                    "r": r,
                     "irrigation": 0,
                     "optimal_m": optimal_moisture,
                     "current_m": current_moisture
                 }
-
-            if mode != IrrigationMode.Manual:
+            else:
                 kp=0.3
                 ki=0.5
                 old_irrigation = last_irrigation_data["irrigation"]
@@ -134,9 +140,6 @@ class IrrigationManager:
                     "current_m": current_moisture
                 }
                 self.pump.irrigate(new_irrigation)
-            else:
-                new_irrigation = 0
-
             return irrigation_data
         else:
             return {
