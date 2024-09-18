@@ -110,6 +110,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             }
 
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
+                                console.log(lastIrrigationData)
                                 if (lastIrrigationData.irrigation >= 0) {
                                     dataset[2].data.push({
                                         x: lastIrrigationData.timestamp,
@@ -176,7 +177,7 @@ function getLastOptimalMoistureValue() {
     if (lastIrrigationData && lastIrrigationData.optimal_m){
         return putMoistureValueInRange(lastIrrigationData.optimal_m);
     } else{
-        return putMoistureValueInRange(50)
+        return 50
     }
 
 }

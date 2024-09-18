@@ -26,7 +26,7 @@ class IrrigationManager:
     def __init__(self, hardware):
         self.mode = IrrigationMode.ManualSlider
         self.pump = hardware
-        self.optimal_value = None
+        self.optimal_value = 50
         self.__maxIrrigationValue = int(os.getenv("IRRIGATION_CHECK_PERIOD", 10))
         self.default_optimals = {}
         self.load_optimals()
@@ -131,7 +131,7 @@ class IrrigationManager:
                 ki=0.5
                 old_irrigation = last_irrigation_data["irrigation"] if last_irrigation_data["irrigation"] else 0
                 old_r = last_irrigation_data["r"] if last_irrigation_data["r"] else 0
-                
+
                 new_irrigation = min(max(0, old_irrigation + kp * (r - old_r) + ki * r), self.__maxIrrigationValue)
                 irrigation_data = {
                     "timestamp": datetime.now().timestamp(),
