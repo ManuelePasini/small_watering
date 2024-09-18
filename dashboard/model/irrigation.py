@@ -135,7 +135,7 @@ class IrrigationManager:
         else:
             return {
                     "timestamp": datetime.now().timestamp(),
-                    "r": r,
+                    "r": 0,
                     "irrigation": 0,
                     "optimal_m": 0,
                     "current_m": 0
