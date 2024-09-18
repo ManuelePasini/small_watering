@@ -92,9 +92,10 @@ $(document).ready(async function () {
                 }
             } else {
                 if (target.id.startsWith('slider')) {
+                    fetch('/irrigation/mode?mode=manual-slider', { method: 'POST' });
                     fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' }); 
                 }else{
-                    
+                    fetch('/irrigation/mode?mode=manual-matrix', { method: 'POST' });
                     updateControlMatrixValues(selectedOptimal.value.data, true);
                 }
             }
