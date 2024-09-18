@@ -132,6 +132,14 @@ class IrrigationManager:
                 new_irrigation = 0
 
             return irrigation_data
+        else:
+            return {
+                    "timestamp": datetime.now().timestamp(),
+                    "r": r,
+                    "irrigation": 0,
+                    "optimal_m": 0,
+                    "current_m": 0
+                }
 
     def get_optimals(self):
         return self.default_optimals
