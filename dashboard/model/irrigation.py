@@ -130,7 +130,7 @@ class IrrigationManager:
                 kp=0.3
                 ki=0.5
                 old_irrigation = last_irrigation_data["irrigation"]
-                ld_r = last_irrigation_data["r"]
+                old_r = last_irrigation_data["r"]
                 new_irrigation = min(max(0, old_irrigation + kp * (r - old_r) + ki * r), self.__maxIrrigationValue)
                 irrigation_data = {
                     "timestamp": datetime.now().timestamp(),
