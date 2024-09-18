@@ -89,13 +89,17 @@ class IrrigationManager:
         return average
 
     def compute_irrigation(self, last_sensor_data, last_irrigation_data):
+        print("I'm computing irrigation")
         if len(last_sensor_data) > 0:
+            print("Last sensor data is not none")
             current_moisture = self.__compute_average(last_sensor_data['data'])
             mode = self.mode
             if (mode == IrrigationMode.Slider and self.optimal_value != None):
+                print("Hey we're in slider mode!")
                 r = self.optimal_value - current_moisture
                 optimal_moisture = self.optimal_value
             elif (mode == IrrigationMode.Matrix and self.optimal_matrix != None):
+                print("Heey we're in matrix mode")
                 diffs = []
                 for measurement in last_sensor_data["data"]:
                     for o_m in self.optimal_matrix['value']:
@@ -106,6 +110,7 @@ class IrrigationManager:
                 r = sum(diffs) / len(diffs)
                 optimal_moisture = self.__compute_average(self.optimal_matrix['value'])
             elif (mode == IrrigationMode.Manual):
+                print("Fuck we're manual")
                 irrigation_data = {
                     "timestamp": datetime.now().timestamp(),
                     "r": 0,
