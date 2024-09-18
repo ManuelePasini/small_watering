@@ -18,7 +18,7 @@ function setupOptimalSlider() {
         `<div class="w-100 h-100 align-content-center">
         <label for="irrigationSlider" class="form-label w-100">Media di irrigazione richiesta: <span
             id="sliderValue">50</span></label>
-        <input type="range" class="form-range w-50" id="irrigationSlider">
+        <input type="range" class="form-range w-50" id="irrigationSlider" value ="50">
         `);
 
     value = Math.round(getLastOptimalMoistureValue());
