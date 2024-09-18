@@ -99,10 +99,11 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             if (lastIrrigationData.timestamp == IrrigationData.timestamp) {
                                 return;
                             }
-                            $("#optimalMoisture").text = Math.round(IrrigationData["optimal_m"] * 100) / 100
-                            $("#observedMoisture").text = Math.round(IrrigationData["actual_m"] * 100) / 100
-                            $("#observedMoisture").text = Math.round(IrrigationData["actual_m"] * 100) / 100
-                            $("#rmse").text = Math.round(Math.round(IrrigationData["actual_m"] * 100)/100 + parseInt($("#rmse").text) * 100) / 100
+
+                            $("#optimalMoisture").text(Math.round(IrrigationData["optimal_m"] * 100) / 100)
+                            $("#observedMoisture").text(Math.round(IrrigationData["actual_m"] * 100) / 100)
+                            $("#rmse").text(Math.round(Math.round(IrrigationData["actual_m"] * 100)/100 + parseInt($("#rmse").text) * 100) / 100)
+
                             lastIrrigationData = IrrigationData;
 
                             lastIrrigationData.timestamp = correctTimestamp(lastIrrigationData.timestamp);
