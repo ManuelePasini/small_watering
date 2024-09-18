@@ -89,48 +89,49 @@ class IrrigationManager:
         return average
 
     def compute_irrigation(self, last_sensor_data, last_irrigation_data):
-        current_moisture = self.__compute_average(last_sensor_data['data'])
-        mode = self.mode
-        if (mode == IrrigationMode.Slider and self.optimal_value != None):
-            r = self.optimal_value - current_moisture
-            optimal_moisture = self.optimal_value
-        elif (mode == IrrigationMode.Matrix and self.optimal_matrix != None):
-            diffs = []
-            for measurement in last_sensor_data["data"]:
-                for o_m in self.optimal_matrix['value']:
-                    if o_m['x'] == measurement['x'] and o_m['y'] == measurement['y']:
-                        optimal = o_m
-                        break
-                diffs.append(optimal["v"] - measurement["v"])
-            r = sum(diffs) / len(diffs)
-            optimal_moisture = self.__compute_average(self.optimal_matrix['value'])
-        elif (mode == IrrigationMode.Manual):
-            irrigation_data = {
-                "timestamp": datetime.now().timestamp(),
-                "r": 0,
-                "irrigation": 0,
-                "optimal_m": optimal_moisture,
-                "current_m": current_moisture
-            }
+        if len(last_sensor_data) > 0:
+            current_moisture = self.__compute_average(last_sensor_data['data'])
+            mode = self.mode
+            if (mode == IrrigationMode.Slider and self.optimal_value != None):
+                r = self.optimal_value - current_moisture
+                optimal_moisture = self.optimal_value
+            elif (mode == IrrigationMode.Matrix and self.optimal_matrix != None):
+                diffs = []
+                for measurement in last_sensor_data["data"]:
+                    for o_m in self.optimal_matrix['value']:
+                        if o_m['x'] == measurement['x'] and o_m['y'] == measurement['y']:
+                            optimal = o_m
+                            break
+                    diffs.append(optimal["v"] - measurement["v"])
+                r = sum(diffs) / len(diffs)
+                optimal_moisture = self.__compute_average(self.optimal_matrix['value'])
+            elif (mode == IrrigationMode.Manual):
+                irrigation_data = {
+                    "timestamp": datetime.now().timestamp(),
+                    "r": 0,
+                    "irrigation": 0,
+                    "optimal_m": optimal_moisture,
+                    "current_m": current_moisture
+                }
 
-        if mode != IrrigationMode.Manual:
-            kp=0.3
-            ki=0.5
-            old_irrigation = last_irrigation_data["irrigation"]
-            ld_r = last_irrigation_data["r"]
-            new_irrigation = min(max(0, old_irrigation + kp * (r - old_r) + ki * r), self.__maxIrrigationValue)
-            irrigation_data = {
-                "timestamp": datetime.now().timestamp(),
-                "r": r,
-                "irrigation": new_irrigation,
-                "optimal_m": optimal_moisture,
-                "current_m": current_moisture
-            }
-            self.pump.irrigate(new_irrigation)
-        else:
-            new_irrigation = 0
+            if mode != IrrigationMode.Manual:
+                kp=0.3
+                ki=0.5
+                old_irrigation = last_irrigation_data["irrigation"]
+                ld_r = last_irrigation_data["r"]
+                new_irrigation = min(max(0, old_irrigation + kp * (r - old_r) + ki * r), self.__maxIrrigationValue)
+                irrigation_data = {
+                    "timestamp": datetime.now().timestamp(),
+                    "r": r,
+                    "irrigation": new_irrigation,
+                    "optimal_m": optimal_moisture,
+                    "current_m": current_moisture
+                }
+                self.pump.irrigate(new_irrigation)
+            else:
+                new_irrigation = 0
 
-        return irrigation_data
+            return irrigation_data
 
     def get_optimals(self):
         return self.default_optimals
