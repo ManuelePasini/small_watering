@@ -94,6 +94,9 @@ $(document).ready(async function () {
             } else {
                 if (!target.id.startsWith('slider')) {
                     updateControlMatrixValues(selectedOptimal.value.data, true);
+                    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+                }else{
+                    updateControlMatrixValues(selectedOptimal.value.data, true);
                 }
             }
 
