@@ -174,12 +174,7 @@ function updateOptimalIrrigationLine(value) {
 }
 
 function getLastOptimalMoistureValue() {
-    if (lastIrrigationData && lastIrrigationData.optimal_m){
-        return putMoistureValueInRange(lastIrrigationData.optimal_m);
-    } else{
-        return 50
-    }
-
+    return putMoistureValueInRange(lastIrrigationData.optimal_m);
 }
 
 window.setupIrrigationLineChart = setupIrrigationLineChart;
