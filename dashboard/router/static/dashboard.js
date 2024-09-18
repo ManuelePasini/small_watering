@@ -209,7 +209,7 @@ $(document).ready(async function () {
             //upsertIrrigationControls(selectedOptimal);
             if(selectedOptimal.name == 'Slider'){
                 fetch('/irrigation/mode?mode=slider', { method: 'POST' })
-                fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+                //fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
             }else{
                 fetch('/irrigation/mode?mode=matrix', { method: 'POST' })
             }
@@ -222,7 +222,7 @@ $(document).ready(async function () {
             //upsertIrrigationControls(selectedOptimal);
             if(selectedOptimal.name == 'Slider'){
                 fetch('/irrigation/mode?mode=manual-slider', { method: 'POST' })           
-                fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
+                //fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
             }
             else{
                 fetch('/irrigation/mode?mode=manual-matrix', { method: 'POST' })
