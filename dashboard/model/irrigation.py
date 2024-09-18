@@ -99,7 +99,7 @@ class IrrigationManager:
             current_moisture = self.__compute_average(last_sensor_data['data'])
             mode = self.mode
             print(f"mode: {mode}")
-
+            print(f"optimal_value: {self.optimal_value}")
             if ((mode == IrrigationMode.Slider or mode == IrrigationMode.ManualSlider) and self.optimal_value != None):
                 print("Hey we're in slider mode!")
                 r = self.optimal_value - current_moisture
