@@ -100,9 +100,9 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                 return;
                             }
 
-                            $("#optimalMoisture").text(Math.round(IrrigationData["optimal_m"] * 100) / 100)
-                            $("#observedMoisture").text(Math.round(IrrigationData["actual_m"] * 100) / 100)
-                            $("#rmse").text(Math.round(Math.round(IrrigationData["actual_m"] * 100)/100 + parseInt($("#rmse").text) * 100) / 100)
+                            $("#optimalMoisture").text(Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100)
+                            $("#observedMoisture").text(Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100)
+                            $("#rmse").text(Math.round(Math.round(putMoistureValueInRangeIrrigationData["r"] * 100)/100 + parseInt($("#rmse").text) * 100) / 100)
 
                             lastIrrigationData = IrrigationData;
 
