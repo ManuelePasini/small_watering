@@ -127,7 +127,7 @@ $(document).ready(async function () {
     fetch('/irrigation/mode?mode=manual-slider', { method: 'POST' })
     let selectedOptimal = get_optimal_from_name("Slider");
 
-    async function fetchData() {7
+    async function fetchData() {
         try {
             const response = await fetch('/sensors/');
             const data = await response.json();
@@ -193,7 +193,7 @@ $(document).ready(async function () {
                     setTimeout(function() {
                         $('#togglePump').prop('disabled', false);
                         $('#togglePump').css('background-color', '#0D6EFD');  
-                    }, 2);
+                    }, 4000);
             }
         });
     });
