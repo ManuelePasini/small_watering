@@ -110,12 +110,13 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             }
 
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
-                                dataset[2].data.push({
-                                    x: lastIrrigationData.timestamp,
-                                    y: normalizeIrrigationValue(lastIrrigationData.irrigation, 15),
-                                    rawValue: 0.03 * lastIrrigationData.irrigation
-                                });
-
+                                if (lastIrrigationData.irrigation >= 0) {
+                                    dataset[2].data.push({
+                                        x: lastIrrigationData.timestamp,
+                                        y: normalizeIrrigationValue(lastIrrigationData.irrigation, 15),
+                                        rawValue: 0.03 * lastIrrigationData.irrigation
+                                    });
+                                }
 
                                 if (!didUsePreview) {
                                     dataset[0].data.push({ x: lastIrrigationData.timestamp, y: putMoistureValueInRange(lastIrrigationData.optimal_m) });
