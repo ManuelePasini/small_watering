@@ -78,7 +78,7 @@ $(document).ready(async function () {
             count++;
         }
 
-        $('.card').click(function (e) {
+        $('.card').click(async function (e) {
             target = e.currentTarget;
             actualId = target.id.replace('Card', '');
             selectedOptimal = optimals.find(optimal => optimal.id == actualId);
