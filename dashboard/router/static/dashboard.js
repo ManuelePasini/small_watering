@@ -96,7 +96,7 @@ $(document).ready(async function () {
                     fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' }); 
                 }else{
                     fetch('/irrigation/mode?mode=manual-matrix', { method: 'POST' });
-                    updateControlMatrixValues(selectedOptimal.value.data, true);
+                    await updateControlMatrixValues(selectedOptimal.value.data, true);
                 }
             }
 

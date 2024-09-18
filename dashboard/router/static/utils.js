@@ -40,7 +40,7 @@ function updateSliderValue(value) {
     updateOptimalIrrigationLine(value);
 }
 
-function updateControlMatrixValues(matrix, shouldUpdateChart = true) {
+async function updateControlMatrixValues(matrix, shouldUpdateChart = true) {
     let copy = []
     matrix.forEach(element => {
         copy.push({
