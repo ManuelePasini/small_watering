@@ -73,7 +73,7 @@ class Controller:
             return self.__irrigation_history[-1]
         else:
             last_sensor_data = self.get_last_sensor_data()
-            last_irrigation_data = self.get_last_irrigation_data()
+            last_irrigation_data = {}
             return self.__irrigation_manager.compute_irrigation(last_sensor_data=last_sensor_data, last_irrigation_data=last_irrigation_data)
 
     def __get_empty_irrigation_data(self):

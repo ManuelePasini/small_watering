@@ -90,8 +90,6 @@ class IrrigationManager:
 
     def compute_irrigation(self, last_sensor_data, last_irrigation_data):
         current_moisture = self.__compute_average(last_sensor_data['data'])
-        old_irrigation = last_irrigation_data["irrigation"]
-        old_r = last_irrigation_data["r"]
         mode = self.mode
         if (mode == IrrigationMode.Slider and self.optimal_value != None):
             r = self.optimal_value - current_moisture
@@ -111,13 +109,15 @@ class IrrigationManager:
                 "timestamp": datetime.now().timestamp(),
                 "r": 0,
                 "irrigation": 0,
-                "optimal_m": 0,
+                "optimal_m": optimal_moisture,
                 "current_m": current_moisture
             }
 
         if mode != IrrigationMode.Manual:
             kp=0.3
             ki=0.5
+            old_irrigation = last_irrigation_data["irrigation"]
+        o   ld_r = last_irrigation_data["r"]
             new_irrigation = min(max(0, old_irrigation + kp * (r - old_r) + ki * r), self.__maxIrrigationValue)
             irrigation_data = {
                 "timestamp": datetime.now().timestamp(),
