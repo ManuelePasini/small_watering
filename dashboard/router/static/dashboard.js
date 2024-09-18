@@ -229,6 +229,7 @@ $(document).ready(async function () {
         $('#optimalSelectionModal').modal('show');
     });
     
+    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
     fetchData();
     fetchInterpolatedData();
     fetchAllIrrigationData();
