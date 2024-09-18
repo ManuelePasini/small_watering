@@ -125,10 +125,12 @@ $(document).ready(async function () {
     //optimals.push(new Optimals(get_optimal_from_name("Slider"), 'disabled', 'Disabled', null, null));
     fetch('/irrigation/mode?mode=manual-slider', { method: 'POST' })
     let selectedOptimal = get_optimal_from_name("Slider");
+    console.log("OPTIMAL VALUE")
+    console.log(getLastOptimalMoistureValue())
     fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
     upsertIrrigationControls(selectedOptimal);
 
-    async function fetchData() {
+    async function fetchData() {7
         try {
             const response = await fetch('/sensors/');
             const data = await response.json();
