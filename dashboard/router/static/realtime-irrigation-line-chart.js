@@ -96,9 +96,9 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                 return;
                             }
 
-                            if (lastIrrigationData.timestamp == IrrigationData.timestamp) {
+                            if (correctTimestamp(lastIrrigationData.timestamp) == IrrigationData.timestamp) {
                                 return;
-                            }
+                            } 
 
                             $("#optimalMoisture").text(Math.round(putMoistureValueInRange(lastIrrigationData["optimal_m"]) * 100) / 100 + "%")
                             $("#observedMoisture").text(Math.round(putMoistureValueInRange(lastIrrigationData["current_m"]) * 100) / 100 + "%")
