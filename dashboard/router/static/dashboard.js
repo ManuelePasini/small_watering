@@ -189,7 +189,7 @@ $(document).ready(async function () {
             }
             else if (data === "On") {
                     $('#togglePump').prop('disabled', true);
-                    $('#togglePump').css('background-color', 'gray');
+                    $('#togglePump').css('background-color', 'red');
                     $('#pumpText').text("Disattiva pompa");
                         
                     setTimeout(function() {
