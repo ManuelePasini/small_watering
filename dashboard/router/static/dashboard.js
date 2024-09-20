@@ -184,15 +184,17 @@ $(document).ready(async function () {
         fetch('/pump/', { method: 'POST' }).then(response => response.json()).then(data => {
             $('#pumpStatus').text(data.pump_state);
             if (data === "Off") {
-                $('#pumpText').text("Attiva pompa");  
+                $('#pumpText').text("Attiva pompa");
+                $('togglePump').color("red");  
             }
             else if (data === "On") {
                     $('#togglePump').prop('disabled', true);
                     $('#togglePump').css('background-color', 'gray');
-                    $('#pumpText').text("Disattiva pompa");    
+                    $('#pumpText').text("Disattiva pompa");
+                        
                     setTimeout(function() {
                         $('#togglePump').prop('disabled', false);
-                        $('#togglePump').css('background-color', '#0D6EFD');  
+                        $('#togglePump').css('background-color', 'green');  
                     }, 4000);
             }
         });
