@@ -185,7 +185,7 @@ $(document).ready(async function () {
             $('#pumpStatus').text(data.pump_state);
             if (data === "Off") {
                 $('#pumpText').text("Attiva pompa");
-                $('togglePump').color("red");  
+                $('togglePump').css('background-color', 'red');  
             }
             else if (data === "On") {
                     $('#togglePump').prop('disabled', true);
