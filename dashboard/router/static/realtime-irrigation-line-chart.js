@@ -91,14 +91,11 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             } catch (error) {
                                 $('#syncingModal').modal('show');
                             }
-
-                            if (IrrigationData == null) {
+                            console.log(Date.now())
+                            
+                            if (IrrigationData == null || lastIrrigationData.timestamp == IrrigationData.timestamp || IrrigationData.timestamp <= Date.now()) {
                                 return;
                             }
-
-                            if (correctTimestamp(lastIrrigationData.timestamp) == IrrigationData.timestamp) {
-                                return;
-                            } 
 
                             $("#optimalMoisture").text(Math.round(putMoistureValueInRange(lastIrrigationData["optimal_m"]) * 100) / 100 + "%")
                             $("#observedMoisture").text(Math.round(putMoistureValueInRange(lastIrrigationData["current_m"]) * 100) / 100 + "%")
