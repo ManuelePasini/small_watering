@@ -27,7 +27,7 @@ class IrrigationManager:
         self.mode = IrrigationMode.ManualSlider
         self.pump = hardware
         self.optimal_value = 45
-        self.__maxIrrigationValue = int(os.getenv("IRRIGATION_CHECK_PERIOD", 10))
+        self.__maxIrrigationValue = float(os.getenv("IRRIGATION_CHECK_PERIOD", 10))
         self.default_optimals = {}
         self.load_optimals()
 
