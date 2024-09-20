@@ -93,7 +93,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             }
                             console.log(Date.now())
                             
-                            if (IrrigationData == null || lastIrrigationData.timestamp == IrrigationData.timestamp || parseInt(IrrigationData.timestamp/1000) * 1000 <= parseInt(Date.now()/1000)*1000) {
+                            if (IrrigationData == null || lastIrrigationData.timestamp == IrrigationData.timestamp || lastIrrigationData.timestamp < Date.now() - 1000) {
                                 return;
                             }
 
