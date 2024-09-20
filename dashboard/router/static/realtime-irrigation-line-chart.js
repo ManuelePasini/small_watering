@@ -101,7 +101,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             $("#optimalMoisture").text(optimal_moisture + "%")
                             $("#observedMoisture").text(current_moisture + "%")
                             $("#rmse").text(
-                                lastIrrigationData["r"] + Math.abs(current_moisture - optimal_moisture)
+                                parseInt($("#rmse").text()) + Math.round(Math.abs(current_moisture - optimal_moisture) * 100) / 100
                             );
 
                             lastIrrigationData = IrrigationData;
