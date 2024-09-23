@@ -25,6 +25,7 @@ class Controller:
         self.__irrigationDataToKeep = int(os.getenv("NUMBER_OF_IRRIGATION_DATA_TO_KEEP_IN_MEMORY", 10))
         self.__irrigationCheckPeriod = float(os.getenv("IRRIGATION_CHECK_PERIOD", 0.5))
         self.__irrigationComputePeriod = float(os.getenv("IRRIGATION_COMPUTE_PERIOD", 15))
+        self.__frequency = self.__irrigationCheckPeriod
 
     def empty_sensor_data(self):
         self.__sensor_history = self.__sensor_history[-1:]
@@ -105,7 +106,6 @@ class Controller:
         return average
 
     def compute_irrigation_thread(self):
-        frequency = self.__irrigationCheckPeriod
 
         while True:
             last_sensor_data = self.get_last_sensor_data()
