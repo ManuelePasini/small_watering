@@ -100,6 +100,7 @@ class IrrigationManager:
             mode = self.mode
             print(f"mode: {mode}")
             print(f"optimal_value: {self.optimal_value}")
+
             if ((mode == IrrigationMode.Slider or mode == IrrigationMode.ManualSlider) and self.optimal_value != None):
                 print("Hey we're in slider mode!")
                 r = self.optimal_value - current_moisture
@@ -117,7 +118,6 @@ class IrrigationManager:
                 r = sum(diffs) / len(diffs)
                 optimal_moisture = self.__compute_average(self.optimal_matrix['value'])
 
-
             if "manual" in mode:
                 return {
                     "timestamp": datetime.now().timestamp(),
@@ -131,7 +131,7 @@ class IrrigationManager:
                     return {
                         "timestamp": datetime.now().timestamp(),
                         "r": r,
-                        "irrigation": None,
+                        "irrigation": last_irrigation_data["irrigation"],
                         "optimal_m": optimal_moisture,
                         "current_m": current_moisture
                     }
