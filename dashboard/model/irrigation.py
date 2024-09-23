@@ -127,9 +127,7 @@ class IrrigationManager:
                     "current_m": current_moisture
                 }
             else:
-                if frequency % computation_frequency == 0:
-                    print(frequency)
-                    print(computation_frequency)
+                if frequency % computation_frequency != 0:
                     return {
                         "timestamp": datetime.now().timestamp(),
                         "r": r,
