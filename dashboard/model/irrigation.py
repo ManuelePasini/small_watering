@@ -135,7 +135,7 @@ class IrrigationManager:
                         "optimal_m": optimal_moisture,
                         "current_m": current_moisture
                     }
-                else {
+                else:
                     kp=0.3
                     ki=0.5
                     old_irrigation = last_irrigation_data["irrigation"] if last_irrigation_data["irrigation"] else 0
@@ -150,7 +150,6 @@ class IrrigationManager:
                         "current_m": current_moisture
                     }
                     self.pump.irrigate(new_irrigation)
-                }
 
             return irrigation_data
         else:
