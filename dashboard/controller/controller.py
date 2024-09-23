@@ -113,7 +113,7 @@ class Controller:
             if(len(last_sensor_data) == 0):
                 sleep(1)
                 continue
-            irrigation = self.__irrigation_manager.compute_irrigation(last_sensor_data=last_sensor_data, last_irrigation_data=last_irrigation_data, frequency=frequency, computation_frequency=self.__irrigationComputePeriod)
+            irrigation = self.__irrigation_manager.compute_irrigation(last_sensor_data=last_sensor_data, last_irrigation_data=last_irrigation_data, frequency=self.__frequency, computation_frequency=self.__irrigationComputePeriod)
             self.__irrigation_history.append(irrigation)
             self.__frequency = self.__irrigationCheckPeriod if self.__frequency % (self.__irrigationComputePeriod) == 0 else (self.__frequency + self.__irrigationCheckPeriod)
 
