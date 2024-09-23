@@ -95,16 +95,9 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             console.log(correctTimestamp(IrrigationData.timestamp))
 
 
-                            if (IrrigationData == null || lastIrrigationData.timestamp == IrrigationData.timestamp || correctTimestamp(IrrigationData.timestamp) - (Date.now() - 1000) < 0 ) {
-                                return;
-                            }
-                            const optimal_moisture = Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100
-                            const current_moisture = Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100
-                            $("#optimalMoisture").text(optimal_moisture + "%")
-                            $("#observedMoisture").text(current_moisture + "%")
-                            $("#rmse").text(
-                                parseInt($("#rmse").text()) + Math.round(Math.abs(current_moisture - optimal_moisture) * 100) / 100
-                            );
+                            // if (IrrigationData == null || lastIrrigationData.timestamp == IrrigationData.timestamp || correctTimestamp(IrrigationData.timestamp) - (Date.now() - 1000) < 0 ) {
+                            //     return;
+                            // }
 
                             lastIrrigationData = IrrigationData;
 
