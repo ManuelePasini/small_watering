@@ -24,6 +24,7 @@ class Controller:
         self.__sensor_manager = SensorManager(hardware)
         self.__irrigationDataToKeep = int(os.getenv("NUMBER_OF_IRRIGATION_DATA_TO_KEEP_IN_MEMORY", 10))
         self.__irrigationCheckPeriod = float(os.getenv("IRRIGATION_CHECK_PERIOD", 10))
+        self.__irrigationComputationPeriod = float(os.getenv("IRRIGATION_COMP_PERIOD"), 15)
 
     def empty_sensor_data(self):
         self.__sensor_history = self.__sensor_history[-1:]
@@ -111,7 +112,7 @@ class Controller:
                 continue
             irrigation = self.__irrigation_manager.compute_irrigation(last_sensor_data=last_sensor_data, last_irrigation_data=last_irrigation_data)
             self.__irrigation_history.append(irrigation)
-            sleep(self.__irrigationCheckPeriod)
+            sleep(self.__irrigationComputationPeriod)
 
     def receive_sensor_data_thread(self):
         while True:
