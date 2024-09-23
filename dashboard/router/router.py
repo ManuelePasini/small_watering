@@ -38,7 +38,6 @@ def get_last_irrigation_data():
 @router.route('/irrigation/slider', methods=['POST'])
 def set_irrigation_value():
     value = request.args.get('value', default=None, type=float)
-    print(f"NEW OPTIMAL: {value}")
     __controller.set_new_optimal_value(value)
     return Response(status=200)
 

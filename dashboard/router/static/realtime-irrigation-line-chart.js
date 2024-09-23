@@ -91,14 +91,18 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             } catch (error) {
                                 $('#syncingModal').modal('show');
                             }
-                            console.log(IrrigationData.timestamp)
-                            console.log(correctTimestamp(IrrigationData.timestamp))
-
 
                              if (IrrigationData == null || lastIrrigationData.timestamp == IrrigationData.timestamp || correctTimestamp(IrrigationData.timestamp) - (Date.now() - 1000) < 0 ) {
                                  return;
                              }
 
+                             const optimal_moisture = Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100
+                             const current_moisture = Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100
+                             $("#optimalMoisture").text(optimal_moisture + "%")
+                             $("#observedMoisture").text(current_moisture + "%")
+                             $("#rmse").text(
+                                 parseInt($("#rmse").text()) + Math.round(Math.abs(current_moisture - optimal_moisture) * 100) / 100
+                             );
                             lastIrrigationData = IrrigationData;
 
                             lastIrrigationData.timestamp = correctTimestamp(lastIrrigationData.timestamp);
@@ -110,7 +114,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                              }
 
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
-                                console.log(lastIrrigationData)
+
                                 if (lastIrrigationData.irrigation > 0) {
                                     dataset[2].data.push({
                                         x: lastIrrigationData.timestamp,
