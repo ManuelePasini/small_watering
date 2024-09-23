@@ -128,6 +128,8 @@ class IrrigationManager:
                 }
             else:
                 if frequency % computation_frequency == 0:
+                    print(frequency)
+                    print(computation_frequency)
                     return {
                         "timestamp": datetime.now().timestamp(),
                         "r": r,
