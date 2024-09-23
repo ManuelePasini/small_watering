@@ -105,9 +105,9 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
 
                             const dataset = irrigationLineChart.data.datasets;
 
-                            if (dataset[0].data.length != 0 && lastIrrigationData.timestamp == dataset[0].data[dataset[0].data.length - 1].x) {
-                                return;
-                            }
+                            // if (dataset[0].data.length != 0 && lastIrrigationData.timestamp == dataset[0].data[dataset[0].data.length - 1].x) {
+                            //     return;
+                            // }
 
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
                                 console.log(lastIrrigationData)
