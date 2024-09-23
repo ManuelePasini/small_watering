@@ -201,6 +201,7 @@ $(document).ready(async function () {
     });
 
     $('#toggleMode').click(function () {
+        $("#rmse").text(0)
         if (pumpMode == PumpMode.Manual) {
             pumpMode = PumpMode.Auto;
             $('#togglePump').prop('disabled', true);
