@@ -103,14 +103,17 @@ class Controller:
         return average
 
     def compute_irrigation_thread(self):
+        frequency = 1
         while True:
             last_sensor_data = self.get_last_sensor_data()
             last_irrigation_data = self.get_last_irrigation_data()
             if(len(last_sensor_data) == 0):
                 sleep(1)
                 continue
-            irrigation = self.__irrigation_manager.compute_irrigation(last_sensor_data=last_sensor_data, last_irrigation_data=last_irrigation_data)
+            irrigation = self.__irrigation_manager.compute_irrigation(last_sensor_data=last_sensor_data, last_irrigation_data=last_irrigation_data, frequency)
             self.__irrigation_history.append(irrigation)
+            frequency = 1 if frequency % 3 == 0 else (frequency + 1)
+
             sleep(self.__irrigationCheckPeriod)
 
     def receive_sensor_data_thread(self):

@@ -92,7 +92,7 @@ class IrrigationManager:
         average = total / len(sensors)
         return average
 
-    def compute_irrigation(self, last_sensor_data, last_irrigation_data):
+    def compute_irrigation(self, last_sensor_data, last_irrigation_data, frequency=0):
         print("I'm computing irrigation")
         if len(last_sensor_data) > 0:
             print("Last sensor data is not none")
@@ -127,20 +127,31 @@ class IrrigationManager:
                     "current_m": current_moisture
                 }
             else:
-                kp=0.3
-                ki=0.5
-                old_irrigation = last_irrigation_data["irrigation"] if last_irrigation_data["irrigation"] else 0
-                old_r = last_irrigation_data["r"] if last_irrigation_data["r"] else 0
+                if frequency % 3 == 0:
+                    return {
+                        "timestamp": datetime.now().timestamp(),
+                        "r": r,
+                        "irrigation": None,
+                        "optimal_m": optimal_moisture,
+                        "current_m": current_moisture
+                    }
+                else {
+                    kp=0.3
+                    ki=0.5
+                    old_irrigation = last_irrigation_data["irrigation"] if last_irrigation_data["irrigation"] else 0
+                    old_r = last_irrigation_data["r"] if last_irrigation_data["r"] else 0
 
-                new_irrigation = min(max(0, old_irrigation + kp * (r - old_r) + ki * r), self.__maxIrrigationValue)
-                irrigation_data = {
-                    "timestamp": datetime.now().timestamp(),
-                    "r": r,
-                    "irrigation": new_irrigation,
-                    "optimal_m": optimal_moisture,
-                    "current_m": current_moisture
+                    new_irrigation = min(max(0, old_irrigation + kp * (r - old_r) + ki * r), self.__maxIrrigationValue)
+                    irrigation_data = {
+                        "timestamp": datetime.now().timestamp(),
+                        "r": r,
+                        "irrigation": new_irrigation,
+                        "optimal_m": optimal_moisture,
+                        "current_m": current_moisture
+                    }
+                    self.pump.irrigate(new_irrigation)
                 }
-                self.pump.irrigate(new_irrigation)
+
             return irrigation_data
         else:
             return {
