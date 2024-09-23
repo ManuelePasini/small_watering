@@ -24,7 +24,7 @@ class Controller:
         self.__sensor_manager = SensorManager(hardware)
         self.__irrigationDataToKeep = int(os.getenv("NUMBER_OF_IRRIGATION_DATA_TO_KEEP_IN_MEMORY", 10))
         self.__irrigationCheckPeriod = float(os.getenv("IRRIGATION_CHECK_PERIOD", 10))
-        self.__irrigationComputationPeriod = float(os.getenv("IRRIGATION_COMP_PERIOD"), 15)
+        self.__irrigationComputationPeriod = float(os.getenv("IRRIGATION_COMP_PERIOD", 15))
 
     def empty_sensor_data(self):
         self.__sensor_history = self.__sensor_history[-1:]
