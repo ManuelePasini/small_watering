@@ -37,7 +37,7 @@ function updateSliderValue(value) {
     lastSliderValue = value;
     var deNormValue = (value / 100) * (maxMoisture - minMoisture) + minMoisture;
     fetch('/irrigation/slider?value=' + deNormValue, { method: 'POST' });
-    updateOptimalIrrigationLine(value);
+    //updateOptimalIrrigationLine(value);
 }
 
 async function updateControlMatrixValues(matrix, shouldUpdateChart = true) {
@@ -59,7 +59,7 @@ async function updateControlMatrixValues(matrix, shouldUpdateChart = true) {
     .then(response => response.json())
     .then(data => {
         if(shouldUpdateChart) {
-            updateOptimalIrrigationLine(data);
+            //updateOptimalIrrigationLine(data);
         }
     });
 }
