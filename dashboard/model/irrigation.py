@@ -119,7 +119,7 @@ class IrrigationManager:
 
 
             if "manual" in mode:
-                irrigation_data = {
+                return {
                     "timestamp": datetime.now().timestamp(),
                     "r": r,
                     "irrigation": None,
