@@ -115,7 +115,7 @@ class Controller:
     def compute_irrigation_thread(self):
         while True:
             last_sensor_data = self.get_last_sensor_data()
-            last_irrigation_data = self.__computedIrrigation_history()
+            last_irrigation_data = self.get_last_computed_irrigation_data()
             if(len(last_sensor_data) == 0):
                 sleep(1)
                 continue
