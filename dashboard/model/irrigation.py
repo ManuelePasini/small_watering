@@ -95,11 +95,8 @@ class IrrigationManager:
     def compute_irrigation(self, last_sensor_data, last_irrigation_data, frequency=0, computation_frequency=1):
         print("I'm computing irrigation")
         if len(last_sensor_data) > 0:
-            print("Last sensor data is not none")
             current_moisture = self.__compute_average(last_sensor_data['data'])
             mode = self.mode
-            print(f"mode: {mode}")
-            print(f"optimal_value: {self.optimal_value}")
 
             if ((mode == IrrigationMode.Slider or mode == IrrigationMode.ManualSlider) and self.optimal_value != None):
                 print("Hey we're in slider mode!")
