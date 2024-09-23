@@ -113,7 +113,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
 
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
 
-                                if (lastIrrigationData.irrigation > 0) {
+                                if (! lastIrrigationData.irrigation == null) {
                                     dataset[2].data.push({
                                         x: lastIrrigationData.timestamp,
                                         y: normalizeIrrigationValue(lastIrrigationData.irrigation, 15),
