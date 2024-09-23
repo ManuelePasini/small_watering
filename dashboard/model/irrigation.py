@@ -130,7 +130,7 @@ class IrrigationManager:
                 if frequency % computation_frequency != 0:
                     return {
                         "timestamp": datetime.now().timestamp(),
-                        "r": 0,
+                        "r": -1,
                         "irrigation": None,
                         "optimal_m": optimal_moisture,
                         "current_m": current_moisture
