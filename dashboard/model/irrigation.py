@@ -92,7 +92,7 @@ class IrrigationManager:
         average = total / len(sensors)
         return average
 
-    def compute_irrigation(self, last_sensor_data, last_irrigation_data, frequency=0):
+    def compute_irrigation(self, last_sensor_data, last_irrigation_data, frequency=0, computation_frequency=1):
         print("I'm computing irrigation")
         if len(last_sensor_data) > 0:
             print("Last sensor data is not none")
@@ -127,7 +127,7 @@ class IrrigationManager:
                     "current_m": current_moisture
                 }
             else:
-                if frequency % 3 == 0:
+                if frequency % computation_frequency == 0:
                     return {
                         "timestamp": datetime.now().timestamp(),
                         "r": r,
