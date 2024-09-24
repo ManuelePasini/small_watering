@@ -85,7 +85,7 @@ $(document).ready(async function () {
             if (pumpMode == PumpMode.Auto){
                 if (target.id.startsWith('slider')) {
                     fetch('/irrigation/mode?mode=slider', { method: 'POST' })
-                    fetch('/irrigation/slider?value=' + getNormalizedLastOptimalMoistureValue(), { method: 'POST' });
+                    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
                     updateSliderValue(getLastOptimalMoistureValue())
                 } else {
                     fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
@@ -94,7 +94,7 @@ $(document).ready(async function () {
             } else {
                 if (target.id.startsWith('slider')) {
                     fetch('/irrigation/mode?mode=manual-slider', { method: 'POST' });
-                    fetch('/irrigation/slider?value=' + getNormalizedLastOptimalMoistureValue(), { method: 'POST' }); 
+                    fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' }); 
                     updateSliderValue(getLastOptimalMoistureValue())
                 }else{
                     fetch('/irrigation/mode?mode=manual-matrix', { method: 'POST' });
