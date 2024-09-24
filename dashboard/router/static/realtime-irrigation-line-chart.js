@@ -92,7 +92,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                 $('#syncingModal').modal('show');
                             }
 
-                             if (IrrigationData == null || lastIrrigationData.timestamp == IrrigationData.timestamp || correctTimestamp(IrrigationData.timestamp) - (Date.now() - 1000) < 0 ) {
+                             if (IrrigationData == null || lastIrrigationData.timestamp == IrrigationData.timestamp ) {
                                  return;
                              }
 
