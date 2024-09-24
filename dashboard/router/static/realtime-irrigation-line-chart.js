@@ -181,7 +181,10 @@ function updateOptimalIrrigationLine(value) {
 function getLastOptimalMoistureValue() {
     return lastIrrigationData.optimal_m;
 }
-    
+function getNormalizedLastOptimalMoistureValue() {
+    return putMoistureValueInRange(lastIrrigationData.optimal_m);
+}
+
 
 window.setupIrrigationLineChart = setupIrrigationLineChart;
 window.getLastOptimalMoistureValue = getLastOptimalMoistureValue;
