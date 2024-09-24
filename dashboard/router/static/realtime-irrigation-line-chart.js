@@ -44,7 +44,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                 {
                     type: 'bar',
                     label: 'Consiglio irriguo',
-                    data: historyData.filter(elem => normalizeIrrigationValue(elem.irrigation, maxIrrigationValue) > 0).map(entry => ({
+                    data: historyData.filter(elem => elem.irrigation > 0).map(entry => ({
                         x: entry.timestamp,
                         y: normalizeIrrigationValue(entry.irrigation, maxIrrigationValue),
                         rawValue: 0.03 * entry.irrigation
