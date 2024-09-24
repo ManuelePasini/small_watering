@@ -76,6 +76,7 @@ class IrrigationManager:
             raise Exception("Invalid irrigation mode")
 
     def set_new_optimal_value(self, value):
+        print(f"Setting new optimal {value}")
         self.optimal_value = value
 
     def set_new_optimal_matrix(self, matrix):

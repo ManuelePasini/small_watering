@@ -213,7 +213,7 @@ $(document).ready(async function () {
             if(selectedOptimal.name == 'Slider'){
                 fetch('/irrigation/mode?mode=slider', { method: 'POST' })
                 fetch('/irrigation/slider?value=' + getNormalizedLastOptimalMoistureValue(), { method: 'POST' });
-                setupOptimalSlider()
+                updateSliderValue(getNormalizedLastOptimalMoistureValue())
             }else{
                 fetch('/irrigation/mode?mode=matrix', { method: 'POST' })
             }
@@ -228,7 +228,7 @@ $(document).ready(async function () {
             if(selectedOptimal.name == 'Slider'){
                 fetch('/irrigation/mode?mode=manual-slider', { method: 'POST' })           
                 fetch('/irrigation/slider?value=' + getNormalizedLastOptimalMoistureValue(), { method: 'POST' });
-                setupOptimalSlider()
+                updateSliderValue(getNormalizedLastOptimalMoistureValue())
             }
             else{
                 fetch('/irrigation/mode?mode=manual-matrix', { method: 'POST' })
