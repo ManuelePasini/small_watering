@@ -22,7 +22,7 @@ class Hardware:
     def __init__(self) -> None:
         self.pump_state = PumpState.Off
         self.__pumpOpeningThreshold = float(os.getenv("PUMP_OPENING_THRESHOLD", 10))
-        self.__maxIrrigationValue = float(os.getenv("IRRIGATION_CHECK_PERIOD", 10))
+        self.__maxIrrigationValue = float(os.getenv("IRRIGATION_MAX_OPENING_S", 10))
         self.irrigation_thread = None
 
     def irrigate(self, seconds):
