@@ -246,9 +246,10 @@ $(document).ready(async function () {
     //console.log("OPTIMAL VALUE")
     //console.log(getLastOptimalMoistureValue())
     //fetch('/irrigation/slider?value=' + getLastOptimalMoistureValue(), { method: 'POST' });
-    upsertIrrigationControls(selectedOptimal);
     setInterval(fetchInterpolatedData, 500);
     setInterval(fetchPumpState, 1000);
+    upsertIrrigationControls(selectedOptimal);
+
 
     //$('#chooseOptimal').prop('disabled', true);
 });
