@@ -79,7 +79,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                     type: 'realtime',
                     realtime: {
                         duration: 120000,
-                        refresh: 0,
+                        refresh: 1000,
                         delay: 0,
                         pause: false,
                         frameRate: 30,
