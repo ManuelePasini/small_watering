@@ -86,7 +86,7 @@ $(document).ready(async function () {
                 if (target.id.startsWith('slider')) {
                     fetch('/irrigation/mode?mode=slider', { method: 'POST' })
                     fetch('/irrigation/slider?value=' + getNormalizedLastOptimalMoistureValue(), { method: 'POST' });
-                    updateSliderValue(getNormalizedLastOptimalMoistureValue())
+                    updateSliderValue(getLastOptimalMoistureValue())
                 } else {
                     fetch('/irrigation/mode?mode=matrix', { method: 'POST' });
                     updateControlMatrixValues(selectedOptimal.value.data, true);
@@ -95,7 +95,7 @@ $(document).ready(async function () {
                 if (target.id.startsWith('slider')) {
                     fetch('/irrigation/mode?mode=manual-slider', { method: 'POST' });
                     fetch('/irrigation/slider?value=' + getNormalizedLastOptimalMoistureValue(), { method: 'POST' }); 
-                    updateSliderValue(getNormalizedLastOptimalMoistureValue())
+                    updateSliderValue(getLastOptimalMoistureValue())
                 }else{
                     fetch('/irrigation/mode?mode=manual-matrix', { method: 'POST' });
                     await updateControlMatrixValues(selectedOptimal.value.data, true);
