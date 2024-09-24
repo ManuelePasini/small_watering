@@ -132,7 +132,7 @@ class IrrigationManager:
                     }
                 else:
                     kp=0.4
-                    ki=0.6
+                    ki=0.7
                     old_irrigation = last_irrigation_data["irrigation"] if last_irrigation_data["irrigation"] else 0
                     old_r = last_irrigation_data["r"] if last_irrigation_data["r"] else 0
                     print(f"old_irrigation={old_irrigation}")
