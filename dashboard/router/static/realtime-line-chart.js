@@ -55,7 +55,7 @@ function setupRealtimeLineChart() {
                     realtime: {
                         duration: 120000,
                         refresh: 1000,
-                        delay: 1000,
+                        delay: 0,
                         pause: false,
                         frameRate: 30,
                         onRefresh: async function (chart) {
