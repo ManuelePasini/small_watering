@@ -146,7 +146,7 @@ class IrrigationManager:
                         "current_m": current_moisture
                     }
                     print(f"Irrigating {new_irrigation}")
-                    self.pump.irrigate(new_irrigation)
+                    #self.pump.irrigate(new_irrigation)
                     
             return irrigation_data
         else:
