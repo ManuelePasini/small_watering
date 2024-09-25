@@ -204,7 +204,7 @@ $(document).ready(async function () {
                     setTimeout(function() {
                         $('#togglePump').prop('disabled', false);
                         $('#togglePump').css('background-color', 'green');  
-                    }, 6000);
+                    }, 4000);
             }
         });
     });
