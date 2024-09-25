@@ -101,13 +101,6 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                  return;
                              }
 
-                             const optimal_moisture = Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100
-                             const current_moisture = Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100
-                             $("#optimalMoisture").text(optimal_moisture + "%")
-                             $("#observedMoisture").text(current_moisture + "%")
-                             $("#rmse").text(
-                                sumArray(dataset[0].data.map(elem => elem.y)) - sumArray(dataset[0].data.map(elem => elem.y))
-                            );
 
                             lastIrrigationData = IrrigationData;
 
@@ -118,6 +111,14 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                              if (dataset[0].data.length != 0 && lastIrrigationData.timestamp == dataset[0].data[dataset[0].data.length - 1].x) {
                                  return;
                              }
+
+                             const optimal_moisture = Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100
+                             const current_moisture = Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100
+                             $("#optimalMoisture").text(optimal_moisture + "%")
+                             $("#observedMoisture").text(current_moisture + "%")
+                             $("#rmse").text(
+                                sumArray(dataset[0].data.map(elem => elem.y)) - sumArray(dataset[0].data.map(elem => elem.y))
+                            );
 
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
                                 console.log(lastIrrigationData.irrigation)
