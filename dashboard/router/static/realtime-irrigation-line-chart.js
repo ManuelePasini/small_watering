@@ -1,7 +1,7 @@
 let irrigationLineChart;
 let lastIrrigationData;
 let didUsePreview = false;
-let error_counter = 0;
+let overall_error = 0;
 window.error_counter = 0
 
 function normalizeIrrigationValue(value, maxIrrigationValue) {
@@ -120,7 +120,8 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             const r = Math.abs(current_moisture - optimal_moisture)
                             $("#optimalMoisture").text(optimal_moisture + "%")
                             $("#observedMoisture").text(current_moisture + "%")
-                            $("#rmse").text(((parseFloat($("#rmse").text()) * window.error_counter + r) / (window.error_counter + 1)).toFixed(1));
+                            overall_error = (overall_error * window.error_counter + r) / (window.error_counter + 1)
+                            $("#rmse").text(overall_error.toFixed(1));
 
                             window.error_counter = window.error_counter + 1;
                             console.log(window.error_counter)
