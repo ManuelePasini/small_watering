@@ -108,18 +108,24 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
 
                             const dataset = irrigationLineChart.data.datasets;
 
-                             if (dataset[0].data.length != 0 && lastIrrigationData.timestamp == dataset[0].data[dataset[0].data.length - 1].x) {
-                                 return;
-                             }
+                            if (dataset[0].data.length != 0 && lastIrrigationData.timestamp == dataset[0].data[dataset[0].data.length - 1].x) {
+                                return;
+                            }
 
-                             const optimal_moisture = Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100
-                             const current_moisture = Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100
-                             $("#optimalMoisture").text(optimal_moisture + "%")
-                             $("#observedMoisture").text(current_moisture + "%")
-                             $("#rmse").text(
-                                sumArray(dataset[0].data.map(elem => elem.y)) - sumArray(dataset[0].data.map(elem => elem.y))
-                            );
+                            const optimal_moisture = Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100
+                            const current_moisture = Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100
+                            const r_on_period = sumArray(dataset[1].data.map(elem => elem.y)) - sumArray(dataset[0].data.map(elem => elem.y))
+                            $("#optimalMoisture").text(optimal_moisture + "%")
+                            $("#observedMoisture").text(current_moisture + "%")
+                            $("#rmse").text(r_on_period);
 
+                            // console.log(r_on_period)
+                            // console.log("Optimal")
+                            // console.log(dataset[0].data.map(elem => elem.y))
+                            // console.log("Current")
+                            // console.log(dataset[1].data.map(elem => elem.y))
+
+                            
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
                                 console.log(lastIrrigationData.irrigation)
                                 if (lastIrrigationData.irrigation !== null && lastIrrigationData.irrigation !== undefined) {
