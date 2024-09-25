@@ -189,11 +189,11 @@ $(document).ready(async function () {
             $('#pumpStatus').text(data.pump_state);
             if (data === "Off") {
                 $('#pumpText').text("Attiva pompa");
-                $('togglePump').css('background-color', 'gray');  
+                $('#togglePump').css('background-color', 'gray');  
                 $('#togglePump').prop('disabled', true);
                 setTimeout(function() {
                     $('#togglePump').prop('disabled', false);
-                    $('togglePump').css('background-color', 'red');   
+                    $('#togglePump').css('background-color', 'red');   
                 }, 4000);
             }
             else if (data === "On") {
