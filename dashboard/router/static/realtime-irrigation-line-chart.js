@@ -96,7 +96,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                 return;
                             }
 
-                            if (lastIrrigationData.timestamp == IrrigationData.timestamp) {
+                            if (lastIrrigationData.timestamp - correctTimestamp(IrrigationData.timestamp) < 10) {
                                 return;
                             }
                             lastIrrigationData = IrrigationData;
