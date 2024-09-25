@@ -115,11 +115,13 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
 
                             const optimal_moisture = Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100
                             const current_moisture = Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100
+                            
                             const r_on_period = Math.abs(sumArray(dataset[1].data.map(elem => elem.y)) - sumArray(dataset[0].data.map(elem => elem.y)))
                             $("#optimalMoisture").text(optimal_moisture + "%")
                             $("#observedMoisture").text(current_moisture + "%")
-                            $("#rmse").text(r_on_period);
+                            $("#rmse").text((parseInt($("rmse").text) * window.error_counter + r_on_period) / (window.error_counter + 1));
 
+                            window.error_counter = window.error_counter + 1;
                             
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
                                 if (lastIrrigationData.irrigation !== null && lastIrrigationData.irrigation !== undefined) {
@@ -127,8 +129,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                         x: lastIrrigationData.timestamp,
                                         y: normalizeIrrigationValue(lastIrrigationData.irrigation, 15),
                                         rawValue: 0.03 * lastIrrigationData.irrigation,
-                                    });
-                                    window.error_counter = window.error_counter + 1;
+                                    });               
                                 }
 
                                 if (!didUsePreview) {

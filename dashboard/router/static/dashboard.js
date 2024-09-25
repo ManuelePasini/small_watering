@@ -206,6 +206,7 @@ $(document).ready(async function () {
         $("#rmse").text(0)
         if (pumpMode == PumpMode.Manual) {
             pumpMode = PumpMode.Auto;
+            window.error_counter = 0
             $('#togglePump').css('background-color', 'gray');
             $('#togglePump').prop('disabled', true);
             $('#chooseOptimal').prop('disabled', false);
@@ -220,7 +221,7 @@ $(document).ready(async function () {
             }
         } else if (pumpMode == PumpMode.Auto) {
             pumpMode = PumpMode.Manual;
-            console.log(window.error_counter)
+            window.error_counter = 0
             $('#togglePump').css('background-color', 'red');
             $('#togglePump').prop('disabled', false);
             $('#chooseOptimal').prop('disabled', false);
