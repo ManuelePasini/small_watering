@@ -121,8 +121,8 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             $("#optimalMoisture").text(optimal_moisture + "%")
                             $("#observedMoisture").text(current_moisture + "%")
                             $("#rmse").text(((parseInt($("#rmse").text()) * window.error_counter + r) / (window.error_counter + 1)).toFixed(1));
-
                             window.error_counter = window.error_counter + 1;
+                            console.log(window.error_counter)
                             
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
                                 if (lastIrrigationData.irrigation !== null && lastIrrigationData.irrigation !== undefined) {
