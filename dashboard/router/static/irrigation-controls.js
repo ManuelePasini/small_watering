@@ -27,6 +27,7 @@ function setupOptimalSlider() {
 
     $('#irrigationSlider').on('change', function () {
         updateSliderValue($(this).val());
+        resetError()
     });
 
     $('#irrigationSlider').on('input', function () {
