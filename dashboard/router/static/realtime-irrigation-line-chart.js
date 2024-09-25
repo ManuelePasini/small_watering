@@ -128,7 +128,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                         y: normalizeIrrigationValue(lastIrrigationData.irrigation, 15),
                                         rawValue: 0.03 * lastIrrigationData.irrigation,
                                     });
-                                    error_counter = error_counter + 1;
+                                    window.error_counter = window.error_counter + 1;
                                 }
 
                                 if (!didUsePreview) {
