@@ -194,7 +194,7 @@ $(document).ready(async function () {
                 setTimeout(function() {
                     $('#togglePump').prop('disabled', false);
                     $('#togglePump').css('background-color', 'red');   
-                }, 4000);
+                }, 6000);
             }
             else if (data === "On") {
                     $('#togglePump').prop('disabled', true);
@@ -204,7 +204,7 @@ $(document).ready(async function () {
                     setTimeout(function() {
                         $('#togglePump').prop('disabled', false);
                         $('#togglePump').css('background-color', 'green');  
-                    }, 4000);
+                    }, 6000);
             }
         });
     });
