@@ -5,6 +5,11 @@ let didUsePreview = false;
 function normalizeIrrigationValue(value, maxIrrigationValue) {
     return ((value) / maxIrrigationValue) * 100;
 }
+function sumArray(array) {
+    return array.reduce(function(accumulator, currentValue) {
+        return accumulator + currentValue;
+    }, 0); // 0 è il valore iniziale per l'accumulatore
+}
 
 function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
     let lineCtx = $('#irrigationLineChart')[0].getContext('2d');
@@ -101,7 +106,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                              $("#optimalMoisture").text(optimal_moisture + "%")
                              $("#observedMoisture").text(current_moisture + "%")
                              $("#rmse").text(
-                                parseInt($("#rmse").text()) + Math.round(Math.abs(current_moisture - optimal_moisture) * 100) / 100
+                                sumArray(dataset[0].data.map(elem => elem.y)) - sumArray(dataset[0].data.map(elem => elem.y))
                             );
 
                             lastIrrigationData = IrrigationData;
@@ -120,7 +125,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                     dataset[2].data.push({
                                         x: lastIrrigationData.timestamp,
                                         y: normalizeIrrigationValue(lastIrrigationData.irrigation, 15),
-                                        rawValue: 0.03 * lastIrrigationData.irrigation
+                                        rawValue: 0.03 * lastIrrigationData.irrigation,
                                     });
                                 }
 
