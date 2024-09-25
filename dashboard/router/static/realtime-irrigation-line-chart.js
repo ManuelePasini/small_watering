@@ -2,6 +2,7 @@ let irrigationLineChart;
 let lastIrrigationData;
 let didUsePreview = false;
 let error_counter = 0;
+window.error_counter = 0
 
 function normalizeIrrigationValue(value, maxIrrigationValue) {
     return ((value) / maxIrrigationValue) * 100;
