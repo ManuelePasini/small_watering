@@ -121,7 +121,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             $("#optimalMoisture").text(optimal_moisture + "%")
                             $("#observedMoisture").text(current_moisture + "%")
                             overall_error = (overall_error * window.error_counter + r) / (window.error_counter + 1)
-                            $("#rmse").text(overall_error.toFixed(1));
+                            $("#rmse").text(overall_error.toFixed(0) + "%");
 
                             window.error_counter = window.error_counter + 1;
                             console.log(window.error_counter)
@@ -197,6 +197,11 @@ function getLastOptimalMoistureValue() {
     }
 }
 
+function resetError(){
+    overall_error = 0
+    window.error_counter = 0
+}
+
 function getNormalizedLastOptimalMoistureValue() {
     return putMoistureValueInRange(lastIrrigationData.optimal_m);
 }
@@ -204,4 +209,4 @@ function getNormalizedLastOptimalMoistureValue() {
 
 window.setupIrrigationLineChart = setupIrrigationLineChart;
 window.getLastOptimalMoistureValue = getLastOptimalMoistureValue;
-window.error_counter = error_counter
+window.resetError = resetError

@@ -79,9 +79,11 @@ $(document).ready(async function () {
         }
 
         $('.card').click(async function (e) {
+            resetError()
             target = e.currentTarget;
             actualId = target.id.replace('Card', '');
             selectedOptimal = optimals.find(optimal => optimal.id == actualId);
+
             if (pumpMode == PumpMode.Auto){
                 if (target.id.startsWith('slider')) {
                     fetch('/irrigation/mode?mode=slider', { method: 'POST' })
