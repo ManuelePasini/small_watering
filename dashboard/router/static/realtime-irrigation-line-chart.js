@@ -1,6 +1,7 @@
 let irrigationLineChart;
 let lastIrrigationData;
 let didUsePreview = false;
+let error_counter = 0;
 
 function normalizeIrrigationValue(value, maxIrrigationValue) {
     return ((value) / maxIrrigationValue) * 100;
@@ -119,21 +120,15 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             $("#observedMoisture").text(current_moisture + "%")
                             $("#rmse").text(r_on_period);
 
-                            // console.log(r_on_period)
-                            // console.log("Optimal")
-                            // console.log(dataset[0].data.map(elem => elem.y))
-                            // console.log("Current")
-                            // console.log(dataset[1].data.map(elem => elem.y))
-
                             
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
-                                console.log(lastIrrigationData.irrigation)
                                 if (lastIrrigationData.irrigation !== null && lastIrrigationData.irrigation !== undefined) {
                                     dataset[2].data.push({
                                         x: lastIrrigationData.timestamp,
                                         y: normalizeIrrigationValue(lastIrrigationData.irrigation, 15),
                                         rawValue: 0.03 * lastIrrigationData.irrigation,
                                     });
+                                    error_counter = error_counter + 1;
                                 }
 
                                 if (!didUsePreview) {
@@ -205,3 +200,4 @@ function getNormalizedLastOptimalMoistureValue() {
 
 window.setupIrrigationLineChart = setupIrrigationLineChart;
 window.getLastOptimalMoistureValue = getLastOptimalMoistureValue;
+window.error_counter = error_counter

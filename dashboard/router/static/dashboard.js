@@ -220,6 +220,7 @@ $(document).ready(async function () {
             }
         } else if (pumpMode == PumpMode.Auto) {
             pumpMode = PumpMode.Manual;
+            console.log(window.error_counter)
             $('#togglePump').css('background-color', 'red');
             $('#togglePump').prop('disabled', false);
             $('#chooseOptimal').prop('disabled', false);
