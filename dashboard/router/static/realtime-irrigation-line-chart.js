@@ -109,18 +109,18 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             lastIrrigationData.timestamp = correctTimestamp(lastIrrigationData.timestamp);
 
                             const dataset = irrigationLineChart.data.datasets;
-
+                            
                             if (dataset[0].data.length != 0 && lastIrrigationData.timestamp == dataset[0].data[dataset[0].data.length - 1].x) {
                                 return;
                             }
-
-                            const optimal_moisture = Math.round(putMoistureValueInRange(IrrigationData["optimal_m"]) * 100) / 100
-                            const current_moisture = Math.round(putMoistureValueInRange(IrrigationData["current_m"]) * 100) / 100
+                            
+                            const optimal_moisture = Math.round(putMoistureValueInRange(lastIrrigationData["optimal_m"]) * 100) / 100
+                            const current_moisture = Math.round(putMoistureValueInRange(lastIrrigationData["current_m"]) * 100) / 100
                             
                             const r = Math.abs(current_moisture - optimal_moisture)
                             $("#optimalMoisture").text(optimal_moisture + "%")
                             $("#observedMoisture").text(current_moisture + "%")
-                            $("#rmse").text(((parseInt($("#rmse").text()) * window.error_counter + r) / (window.error_counter + 1)).toFixed(1));
+                            $("#rmse").text(((parseFloat($("#rmse").text()) * window.error_counter + r) / (window.error_counter + 1)).toFixed(1));
 
                             window.error_counter = window.error_counter + 1;
                             console.log(window.error_counter)
@@ -135,11 +135,11 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                                 }
 
                                 if (!didUsePreview) {
-                                    dataset[0].data.push({ x: lastIrrigationData.timestamp, y: putMoistureValueInRange(lastIrrigationData.optimal_m) });
+                                    dataset[0].data.push({ x: lastIrrigationData.timestamp, y: optimal_moisture });
                                 }
                                 didUsePreview = false;
 
-                                dataset[1].data.push({ x: lastIrrigationData.timestamp, y: putMoistureValueInRange(lastIrrigationData.current_m) });
+                                dataset[1].data.push({ x: lastIrrigationData.timestamp, y: current_moisture });
                                 irrigationLineChart.update();
                             }
                         }
