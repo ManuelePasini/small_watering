@@ -4,13 +4,13 @@ This repository contains a smart irrigation small scale prototype implemented th
 
 # Deployment
 
-The application requires Python to be run and the required dependencies fir the application backend can be found in ``small_watering/dashboard/requirements.txt``
+The application requires Python to be run and the required dependencies for the application backend can be found in ``small_watering/dashboard/requirements.txt``
 
-An example of the .env storing configurations variables can be found in ``small_watering/dashboard/.env.example`` which for a standard deploy can simply be renamed .env
+The application requires some configuration varbiales to be stored in a .env. An example of the .env file can be found in ``small_watering/dashboard/.env.example``; for a standard deploy, it can simply be renamed .env
 
-The application backend can be run via :
+The application backend can be run via:
 
-    small_watering/dashboard/main.py
+    python3 small_watering/dashboard/main.py
 
-The web application is then reachable at ``http://{HOST}:{PORT}``
+The web application is then reachable at ``http://{HOST}:{PORT}``.
 
