@@ -1,47 +1,16 @@
-# Tesi small watering
+# Smart Irrigation Prototype
 
-## Hardware
-1. Provare sensori (verificare che non si influenzano a vicenda)
-2. Predisporre "impianto elettrico" breadboard
-3. Comunicazione bidirezionale Raspberry - Arduino.
+This repository contains a smart irrigation small scale prototype implemented through [Flask](https://flask.palletsprojects.com/en/3.0.x/), result of the bachelor thesis by Davide Speziali.
 
+# Deployment
 
-## Software
+The application requires Python to be run and the required dependencies fir the application backend can be found in ``small_watering/dashboard/requirements.txt``
 
-### Collection (Arduino)
-1. Sampling sensori (<b>definire frequenza  di campionamento</b>)
-2. Invio dati Arduino -> Raspberry
-    - JSON
-            - {timestamp: 1720684942,
-            ges_10_10: 56,
-            ...,
-            ges_30_30: 100
-           }
+An example of the .env storing configurations variables can be found in ``small_watering/dashboard/.env.example`` which for a standard deploy can simply be renamed .env
 
-### Processing (Raspberry)g
-1. Per ogni .JSON, salvarlo su storage
-2. Per ogni .JSON effettuare interpolazione bilineare con <b>granularità 5 cm</b> e salvare dati su storage.
+The application backend can be run via :
 
-#### Nice to have
- - Salvare i dati su un DB
+    small_watering/dashboard/main.py
 
-### Exploitation
+The web application is then reachable at ``http://{HOST}:{PORT}``
 
-#### Interfaccia grafica
-
-Applicazione in Java/Python
-<b>Due</b> grafici:
-1. Valori singoli sensori
-2. Matrice interpolata
-
-#### Prescrittivo
-
-<b>TO BE DEFINED</b>
-
-Considerazioni su algoritmo prescrittivo as-is:
-- Senza rilevare la quantità irrigata in questo scenario, il PID non funzia;
-- Semplice sistema a soglia?
-
-
-# TODOLIST
-- Compra relè
