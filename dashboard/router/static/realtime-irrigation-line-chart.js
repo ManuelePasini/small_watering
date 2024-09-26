@@ -124,8 +124,7 @@ function setupIrrigationLineChart(historyData, maxIrrigationValue = 15) {
                             $("#rmse").text(overall_error.toFixed(0) + "%");
 
                             window.error_counter = window.error_counter + 1;
-                            console.log(window.error_counter)
-                            
+
                             if (dataset[2].data.length === 0 || dataset[2].data[dataset[2].data.length - 1].x < lastIrrigationData.timestamp) {
                                 if (lastIrrigationData.irrigation !== null && lastIrrigationData.irrigation !== undefined) {
                                     dataset[2].data.push({
