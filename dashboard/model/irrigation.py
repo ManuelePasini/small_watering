@@ -64,10 +64,10 @@ class IrrigationManager:
     def set_irrigation_mode(self, mode):
         if (mode == IrrigationMode.ManualSlider):
             self.mode = IrrigationMode.ManualSlider
-            self.pump.close_pump()
+            #self.pump.close_pump()
         elif (mode == IrrigationMode.ManualMatrix):
             self.mode = IrrigationMode.ManualMatrix
-            self.pump.close_pump()
+            #self.pump.close_pump()
         elif (mode == IrrigationMode.Slider):
             self.mode = IrrigationMode.Slider
         elif (mode == IrrigationMode.Matrix):
